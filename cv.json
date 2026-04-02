@@ -1,0 +1,15 @@
+{
+  "instrucoes": "Extraia as seguintes informações do currículo",
+  "campos": {
+    "nome": "Nome completo do candidato",
+    "cpf": "CPF (apenas números, sem pontos ou traços)",
+    "identidade": "RG ou número de identidade",
+    "telefone": "Número de telefone principal (com DDD)",
+    "rua": "Logradouro (nome da rua, avenida, etc.)",
+    "numero": "Número do endereço",
+    "bairro": "Bairro",
+    "cidade": "Cidade",
+    "estado": "Sigla do estado (ex: SP, RJ, MG)",
+    "cargo": "Cargo desejado ou cargo atual no currículo"
+  }
+}
