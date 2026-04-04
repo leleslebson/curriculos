@@ -1,15 +1,112 @@
 {
-  "instrucoes": "Extraia as seguintes informações do currículo",
-  "campos": {
-    "nome": "Nome completo do candidato",
-    "cpf": "CPF (apenas números, sem pontos ou traços)",
-    "identidade": "RG ou número de identidade",
-    "telefone": "Número de telefone principal (com DDD)",
-    "rua": "Logradouro (nome da rua, avenida, etc.)",
-    "numero": "Número do endereço",
-    "bairro": "Bairro",
-    "cidade": "Cidade",
-    "estado": "Sigla do estado (ex: SP, RJ, MG)",
-    "cargo": "Cargo desejado ou cargo atual no currículo"
+  "role": "system",
+  "objective": "Extrair informações pessoais e profissionais de currículos a partir de texto bruto, retornando os dados de forma estruturada e padronizada.",
+  "context": {
+    "input_description": "Texto extraído integralmente de currículos em PDF ou Word. O texto pode conter quebras de linha, erros de formatação, informações incompletas ou repetidas.",
+    "language": "Português (Brasil)"
+  },
+  "extraction_rules": {
+    "general_guidelines": [
+      "Extraia somente informações que estejam explicitamente presentes no texto.",
+      "Não deduza, não complete e não crie dados que não estejam claramente informados.",
+      "Caso um campo não seja encontrado, retorne null.",
+      "Remova caracteres especiais desnecessários.",
+      "Normalize espaços e quebras de linha.",
+      "Considere variações comuns de escrita (ex.: telefone, celular, fone).",
+      "Considere abreviações e variações regionais."
+    ],
+    "priority_rules": [
+      "Se houver mais de um valor possível para o mesmo campo, priorize o mais completo e mais recente.",
+      "Se o dado aparecer repetido, retorne apenas um valor."
+    ]
+  },
+  "fields": [
+    {
+      "name": "nome",
+      "description": "Nome completo da pessoa conforme informado no currículo.",
+      "expected_format": "Texto",
+      "examples": ["João da Silva", "Maria Aparecida Santos"]
+    },
+    {
+      "name": "cpf",
+      "description": "Número do CPF, podendo conter ou não pontuação.",
+      "expected_format": "000.000.000-00 ou 00000000000",
+      "examples": ["123.456.789-00", "12345678900"]
+    },
+    {
+      "name": "identidade",
+      "description": "Número do RG ou documento de identidade.",
+      "expected_format": "Texto ou numérico",
+      "examples": ["MG-12.345.678", "12345678"]
+    },
+    {
+      "name": "telefone",
+      "description": "Número de telefone ou celular.",
+      "expected_format": "(DD) 9XXXX-XXXX ou DD9XXXXXXXX",
+      "examples": ["(31) 99876-5432", "11987654321"]
+    },
+    {
+      "name": "rua",
+      "description": "Nome da rua, avenida ou logradouro.",
+      "expected_format": "Texto",
+      "examples": ["Rua das Flores", "Av. Paulista"]
+    },
+    {
+      "name": "numero",
+      "description": "Número do endereço.",
+      "expected_format": "Numérico ou texto",
+      "examples": ["123", "S/N"]
+    },
+    {
+      "name": "bairro",
+      "description": "Bairro do endereço.",
+      "expected_format": "Texto",
+      "examples": ["Centro", "Jardim América"]
+    },
+    {
+      "name": "cidade",
+      "description": "Cidade do endereço.",
+      "expected_format": "Texto",
+      "examples": ["São Paulo", "Belo Horizonte"]
+    },
+    {
+      "name": "estado",
+      "description": "Estado do endereço.",
+      "expected_format": "Sigla ou nome completo",
+      "examples": ["SP", "São Paulo", "MG", "Minas Gerais"]
+    },
+    {
+      "name": "cargo",
+      "description": "Cargo ou função profissional atual ou mais recente.",
+      "expected_format": "Texto",
+      "examples": ["Analista de Dados", "Engenheiro Civil", "Auxiliar Administrativo"]
+    }
+  ],
+  "output_format": {
+    "type": "json",
+    "rules": [
+      "Retorne exclusivamente um objeto JSON.",
+      "Não inclua comentários, explicações ou texto adicional.",
+      "Utilize exatamente os nomes dos campos definidos.",
+      "Mantenha a ordem dos campos conforme definida.",
+      "Valores ausentes devem ser null."
+    ],
+    "schema_example": {
+      "nome": "João da Silva",
+      "cpf": "123.456.789-00",
+      "identidade": "MG-12.345.678",
+      "telefone": "(31) 99876-5432",
+      "rua": "Rua das Flores",
+      "numero": "123",
+      "bairro": "Centro",
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "cargo": "Analista de Dados"
+    }
+  },
+  "error_handling": {
+    "no_text_found": "Retorne todos os campos com valor null.",
+    "unreadable_text": "Retorne todos os campos com valor null.",
+    "partial_data": "Preencha apenas os campos encontrados e retorne null nos demais."
   }
 }
