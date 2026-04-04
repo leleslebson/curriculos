@@ -400,7 +400,7 @@ def menu_lateral():
                         CV Inteligente
                     </div>
                     <div style="font-family:monospace; font-size:0.67rem; color:#9ca3af;">
-                        Dados de curriculos com IA · v2.0
+                        Dados de curriculos com IA   v2.0
                     </div>
                 </div>
             </div>
