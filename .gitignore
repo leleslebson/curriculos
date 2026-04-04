@@ -1,23 +1,8 @@
-# Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-*.egg-info/
-dist/
-build/
-
-# Streamlit secrets real (não versionar!)
+.env
 .streamlit/secrets.toml
-
-# Cache do Streamlit
 .streamlit/cache/
 .cache/
-
-# Arquivos temporários
 *.log
 .DS_Store
