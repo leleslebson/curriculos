@@ -24,7 +24,7 @@ from streamlit_option_menu import option_menu
 # CONFIGURAÇÃO DA PÁGINA
 # ══════════════════════════════════════════
 st.set_page_config(
-    page_title="CV Intelgente ",
+    page_title="CV Inteligente ",
     page_icon="🪪",
     layout="wide",
     initial_sidebar_state="expanded"
