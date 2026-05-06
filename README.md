@@ -7,7 +7,9 @@
 ![LangChain](https://img.shields.io/badge/LangChain-0.x-1C3C3C?style=flat&logo=chainlink&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-F55036?style=flat)
 ![License](https://img.shields.io/badge/Licença-MIT-green?style=flat)
-![Demonstração APP](https://lercurriculos.streamlit.app/)
+
+Demonstração APP
+https://lercurriculos.streamlit.app/
 
 ---
 
